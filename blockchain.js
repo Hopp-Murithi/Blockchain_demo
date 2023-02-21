@@ -37,6 +37,16 @@ class Blockchain {
     return { hash, nonce };
   }
 
+  createNewTransaction(amount, sender, recipient) {
+    const newTransaction = {
+      amount,
+      sender,
+      recipient,
+    };
+
+    this.pendingTransactions.push(newTransaction);
+  }
+
   createNewBlock() {
     const timestamp = Date.now();
     const transactions = this.pendingTransactions;
@@ -63,3 +73,5 @@ class Blockchain {
   }
 
 }
+
+module.exports = Blockchain;
