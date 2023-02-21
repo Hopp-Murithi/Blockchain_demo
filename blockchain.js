@@ -13,5 +13,7 @@ class Blockchain {
           previousBlockHash: "previousBlockHash",
         };
       }
-    
+      getLastBlock() {
+        return this.chain[this.chain.length -1]
+      }
 }
