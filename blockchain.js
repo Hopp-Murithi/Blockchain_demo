@@ -1,3 +1,6 @@
+const SHA256 = require("sha256");
+
+
 class Blockchain {
     constructor() {
         this.chain = [this.generateGenesisBlock()]
@@ -16,4 +19,20 @@ class Blockchain {
       getLastBlock() {
         return this.chain[this.chain.length -1]
       }
+      generateHash(previousBlockHash,pendingTransactions,timestamp) {
+        let hash= "";
+        let nonce = 0;
+
+        while(hash.substring(0,3) !== "000") {
+            nonce++;
+            hash = SHA256(
+                previousBlockHash +
+          timestamp +
+          JSON.stringify(pendingTransactions) +
+          nonce
+            ).toString();
+        }
+        return {hash,nonce}
+      }
+
 }
